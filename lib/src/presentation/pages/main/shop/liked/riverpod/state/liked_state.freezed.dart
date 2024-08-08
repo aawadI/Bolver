@@ -1,0 +1,294 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'liked_state.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+/// @nodoc
+mixin _$LikedState {
+  bool get isSearching => throw _privateConstructorUsedError;
+  bool get isSearchLoading => throw _privateConstructorUsedError;
+  bool get isLikedProductsLoading => throw _privateConstructorUsedError;
+  String get query => throw _privateConstructorUsedError;
+  List<ProductData> get searchedProducts => throw _privateConstructorUsedError;
+  List<ProductData> get likedProducts => throw _privateConstructorUsedError;
+  ListAlignment get listAlignment => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LikedStateCopyWith<LikedState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LikedStateCopyWith<$Res> {
+  factory $LikedStateCopyWith(
+          LikedState value, $Res Function(LikedState) then) =
+      _$LikedStateCopyWithImpl<$Res, LikedState>;
+  @useResult
+  $Res call(
+      {bool isSearching,
+      bool isSearchLoading,
+      bool isLikedProductsLoading,
+      String query,
+      List<ProductData> searchedProducts,
+      List<ProductData> likedProducts,
+      ListAlignment listAlignment});
+}
+
+/// @nodoc
+class _$LikedStateCopyWithImpl<$Res, $Val extends LikedState>
+    implements $LikedStateCopyWith<$Res> {
+  _$LikedStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isSearching = null,
+    Object? isSearchLoading = null,
+    Object? isLikedProductsLoading = null,
+    Object? query = null,
+    Object? searchedProducts = null,
+    Object? likedProducts = null,
+    Object? listAlignment = null,
+  }) {
+    return _then(_value.copyWith(
+      isSearching: null == isSearching
+          ? _value.isSearching
+          : isSearching // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSearchLoading: null == isSearchLoading
+          ? _value.isSearchLoading
+          : isSearchLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLikedProductsLoading: null == isLikedProductsLoading
+          ? _value.isLikedProductsLoading
+          : isLikedProductsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+      searchedProducts: null == searchedProducts
+          ? _value.searchedProducts
+          : searchedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductData>,
+      likedProducts: null == likedProducts
+          ? _value.likedProducts
+          : likedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductData>,
+      listAlignment: null == listAlignment
+          ? _value.listAlignment
+          : listAlignment // ignore: cast_nullable_to_non_nullable
+              as ListAlignment,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LikedStateImplCopyWith<$Res>
+    implements $LikedStateCopyWith<$Res> {
+  factory _$$LikedStateImplCopyWith(
+          _$LikedStateImpl value, $Res Function(_$LikedStateImpl) then) =
+      __$$LikedStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isSearching,
+      bool isSearchLoading,
+      bool isLikedProductsLoading,
+      String query,
+      List<ProductData> searchedProducts,
+      List<ProductData> likedProducts,
+      ListAlignment listAlignment});
+}
+
+/// @nodoc
+class __$$LikedStateImplCopyWithImpl<$Res>
+    extends _$LikedStateCopyWithImpl<$Res, _$LikedStateImpl>
+    implements _$$LikedStateImplCopyWith<$Res> {
+  __$$LikedStateImplCopyWithImpl(
+      _$LikedStateImpl _value, $Res Function(_$LikedStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isSearching = null,
+    Object? isSearchLoading = null,
+    Object? isLikedProductsLoading = null,
+    Object? query = null,
+    Object? searchedProducts = null,
+    Object? likedProducts = null,
+    Object? listAlignment = null,
+  }) {
+    return _then(_$LikedStateImpl(
+      isSearching: null == isSearching
+          ? _value.isSearching
+          : isSearching // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSearchLoading: null == isSearchLoading
+          ? _value.isSearchLoading
+          : isSearchLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLikedProductsLoading: null == isLikedProductsLoading
+          ? _value.isLikedProductsLoading
+          : isLikedProductsLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      query: null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+      searchedProducts: null == searchedProducts
+          ? _value._searchedProducts
+          : searchedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductData>,
+      likedProducts: null == likedProducts
+          ? _value._likedProducts
+          : likedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ProductData>,
+      listAlignment: null == listAlignment
+          ? _value.listAlignment
+          : listAlignment // ignore: cast_nullable_to_non_nullable
+              as ListAlignment,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LikedStateImpl extends _LikedState {
+  const _$LikedStateImpl(
+      {this.isSearching = false,
+      this.isSearchLoading = false,
+      this.isLikedProductsLoading = false,
+      this.query = '',
+      final List<ProductData> searchedProducts = const [],
+      final List<ProductData> likedProducts = const [],
+      this.listAlignment = ListAlignment.vertically})
+      : _searchedProducts = searchedProducts,
+        _likedProducts = likedProducts,
+        super._();
+
+  @override
+  @JsonKey()
+  final bool isSearching;
+  @override
+  @JsonKey()
+  final bool isSearchLoading;
+  @override
+  @JsonKey()
+  final bool isLikedProductsLoading;
+  @override
+  @JsonKey()
+  final String query;
+  final List<ProductData> _searchedProducts;
+  @override
+  @JsonKey()
+  List<ProductData> get searchedProducts {
+    if (_searchedProducts is EqualUnmodifiableListView)
+      return _searchedProducts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchedProducts);
+  }
+
+  final List<ProductData> _likedProducts;
+  @override
+  @JsonKey()
+  List<ProductData> get likedProducts {
+    if (_likedProducts is EqualUnmodifiableListView) return _likedProducts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likedProducts);
+  }
+
+  @override
+  @JsonKey()
+  final ListAlignment listAlignment;
+
+  @override
+  String toString() {
+    return 'LikedState(isSearching: $isSearching, isSearchLoading: $isSearchLoading, isLikedProductsLoading: $isLikedProductsLoading, query: $query, searchedProducts: $searchedProducts, likedProducts: $likedProducts, listAlignment: $listAlignment)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LikedStateImpl &&
+            (identical(other.isSearching, isSearching) ||
+                other.isSearching == isSearching) &&
+            (identical(other.isSearchLoading, isSearchLoading) ||
+                other.isSearchLoading == isSearchLoading) &&
+            (identical(other.isLikedProductsLoading, isLikedProductsLoading) ||
+                other.isLikedProductsLoading == isLikedProductsLoading) &&
+            (identical(other.query, query) || other.query == query) &&
+            const DeepCollectionEquality()
+                .equals(other._searchedProducts, _searchedProducts) &&
+            const DeepCollectionEquality()
+                .equals(other._likedProducts, _likedProducts) &&
+            (identical(other.listAlignment, listAlignment) ||
+                other.listAlignment == listAlignment));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      isSearching,
+      isSearchLoading,
+      isLikedProductsLoading,
+      query,
+      const DeepCollectionEquality().hash(_searchedProducts),
+      const DeepCollectionEquality().hash(_likedProducts),
+      listAlignment);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LikedStateImplCopyWith<_$LikedStateImpl> get copyWith =>
+      __$$LikedStateImplCopyWithImpl<_$LikedStateImpl>(this, _$identity);
+}
+
+abstract class _LikedState extends LikedState {
+  const factory _LikedState(
+      {final bool isSearching,
+      final bool isSearchLoading,
+      final bool isLikedProductsLoading,
+      final String query,
+      final List<ProductData> searchedProducts,
+      final List<ProductData> likedProducts,
+      final ListAlignment listAlignment}) = _$LikedStateImpl;
+  const _LikedState._() : super._();
+
+  @override
+  bool get isSearching;
+  @override
+  bool get isSearchLoading;
+  @override
+  bool get isLikedProductsLoading;
+  @override
+  String get query;
+  @override
+  List<ProductData> get searchedProducts;
+  @override
+  List<ProductData> get likedProducts;
+  @override
+  ListAlignment get listAlignment;
+  @override
+  @JsonKey(ignore: true)
+  _$$LikedStateImplCopyWith<_$LikedStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mupza</string>
+    <string name="facebook_app_id">535833745205113</string>
+    <string name="fb_login_protocol_scheme">fb535833745205113</string>
+    <string name="facebook_client_token">b5654d07893f103025bcd4595afaee57</string>
+</resources>

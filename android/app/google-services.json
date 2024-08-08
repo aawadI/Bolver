@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "905151585140",
+    "project_id": "bolver-13e46",
+    "storage_bucket": "bolver-13e46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905151585140:android:2efd901b1d7af52badea21",
+        "android_client_info": {
+          "package_name": "com.goshops.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905151585140-g53g6nu3db35887dehvppgh5nl1aim8g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.goshops.customer",
+            "certificate_hash": "765ecd7e37b56c72e725cb013c5862c378ef3ee7"
+          }
+        },
+        {
+          "client_id": "905151585140-afkamfj1ao2ealvait0enp2h1l8uchb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuD-Ch3cCTXVeXxVBrUoEC82i96WHCMKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905151585140-afkamfj1ao2ealvait0enp2h1l8uchb4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "905151585140-c8tbb8gbr3nh3ogpfkp4cdc91db6hdim.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.goshops.customer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
