@@ -271,6 +271,49 @@ class CategoryProductsNotifier extends StateNotifier<CategoryProductsState> {
     );
   }
 
+  // Future<void> setChildCategory(CategoryData? category) async {
+  //   _selectedChildCategory = category;
+  //   _hasMore = false;
+  //   _page = 0;
+  //   state = state.copyWith(
+  //     isLoading: true,
+  //     productsCount: 0,
+  //     products: [],
+  //     categoryTitle: category == null
+  //         ? (_parentCategory?.translation?.title ?? '')
+  //         : (category.translation?.title ?? ''),
+  //   );
+  //   final response = await _productsRepository.getProductsPaginate(
+  //     page: ++_page,
+  //     categoryId: _parentCategory?.children?.isEmpty ?? false
+  //         ? _parentCategory?.id
+  //         : null,
+  //     parentCategoryId: _parentCategory?.children?.isEmpty ?? false
+  //         ? _parentCategory?.parentId
+  //         : _parentCategory?.id,
+  //     childCategory: _selectedChildCategory,
+  //     shopIds: _shopIds.isEmpty ? null : _shopIds,
+  //     brandIds: _brandIds.isEmpty ? null : _brandIds,
+  //     extrasIds: _extrasIds.isEmpty ? null : _extrasIds,
+  //     minPrice: _shouldIncludeRanges ? state.filterRange.start : null,
+  //     maxPrice: _shouldIncludeRanges ? state.filterRange.end : null,
+  //   );
+  //   response.when(
+  //     success: (data) {
+  //       final List<ProductData> products = data.data ?? [];
+  //       state = state.copyWith(
+  //         products: products,
+  //         isLoading: false,
+  //         productsCount: data.meta?.total ?? 0,
+  //       );
+  //       _hasMore = products.length >= (data.meta?.total ?? 0);
+  //     },
+  //     failure: (fail) {
+  //       state = state.copyWith(isLoading: false);
+  //       debugPrint('===> set child category products $fail');
+  //     },
+  //   );
+  // }
   Future<void> setChildCategory(CategoryData? category) async {
     _selectedChildCategory = category;
     _hasMore = false;
@@ -301,12 +344,20 @@ class CategoryProductsNotifier extends StateNotifier<CategoryProductsState> {
     response.when(
       success: (data) {
         final List<ProductData> products = data.data ?? [];
+        List<ProductData> filteredProducts;
+        if (category != null) {
+          filteredProducts = products
+              .where((product) => product.categoryId == category.id)
+              .toList();
+        } else {
+          filteredProducts = products;
+        }
         state = state.copyWith(
-          products: products,
+          products: filteredProducts,
           isLoading: false,
           productsCount: data.meta?.total ?? 0,
         );
-        _hasMore = products.length >= (data.meta?.total ?? 0);
+        _hasMore = filteredProducts.length >= (data.meta?.total ?? 0);
       },
       failure: (fail) {
         state = state.copyWith(isLoading: false);

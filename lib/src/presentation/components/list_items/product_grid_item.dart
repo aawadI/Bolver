@@ -44,7 +44,7 @@ class ProductGridItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 185.r,
+            height: 182.r,
             child: Stack(
               children: [
                 CommonImage(
