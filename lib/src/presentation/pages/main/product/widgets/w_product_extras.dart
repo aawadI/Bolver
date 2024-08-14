@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../core/constants/constants.dart';
@@ -143,31 +142,31 @@ class WProductExtras extends ConsumerWidget {
             },
           ),
           10.verticalSpace,
-          Row(
-            children: [
-              SvgPicture.asset(
-                AppAssets.svgIcCertificateCheck,
-                theme: SvgTheme(
-                    currentColor:
-                        isDarkMode ? AppColors.white : AppColors.black),
-                width: 18.r,
-                height: 18.r,
-              ),
-              7.horizontalSpace,
-              Text(
-                '${(state.selectedStock?.quantity != null && ((state.selectedStock?.quantity)! > 0)) ? '${state.selectedStock?.quantity} ${AppHelpers.getTranslation(TrKeys.searchIn).toLowerCase()}' : AppHelpers.getTranslation(TrKeys.outOf)} ${AppHelpers.getTranslation(TrKeys.stock).toLowerCase()}',
-                style: GoogleFonts.cairo(
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.w500,
-                  color: isDarkMode ? AppColors.white : AppColors.black,
-                  decoration: TextDecoration.underline,
-                  decorationColor: AppColors.accentGreen,
-                  decorationThickness: 3,
-                ),
-              ),
-            ],
-          ),
-          22.verticalSpace,
+          // Row(
+          //   children: [
+          //     SvgPicture.asset(
+          //       AppAssets.svgIcCertificateCheck,
+          //       theme: SvgTheme(
+          //           currentColor:
+          //               isDarkMode ? AppColors.white : AppColors.black),
+          //       width: 18.r,
+          //       height: 18.r,
+          //     ),
+          //     7.horizontalSpace,
+          //     Text(
+          //       '${(state.selectedStock?.quantity != null && ((state.selectedStock?.quantity)! > 0)) ? '${state.selectedStock?.quantity} ${AppHelpers.getTranslation(TrKeys.searchIn).toLowerCase()}' : AppHelpers.getTranslation(TrKeys.outOf)} ${AppHelpers.getTranslation(TrKeys.stock).toLowerCase()}',
+          //       style: GoogleFonts.cairo(
+          //         fontSize: 13.sp,
+          //         fontWeight: FontWeight.w500,
+          //         color: isDarkMode ? AppColors.white : AppColors.black,
+          //         decoration: TextDecoration.underline,
+          //         decorationColor: AppColors.accentGreen,
+          //         decorationThickness: 3,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // 22.verticalSpace,
         ],
       ),
     );
