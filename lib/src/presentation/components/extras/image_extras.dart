@@ -4,8 +4,8 @@ import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../models/models.dart';
-import '../../theme/theme.dart';
-import '../shimmers/make_shimmer.dart';
+import '../../theme/app_colors.dart';
+import '../components.dart';
 
 class ImageExtras extends StatelessWidget {
   final int groupIndex;
@@ -29,9 +29,9 @@ class ImageExtras extends StatelessWidget {
       children: uiExtras
           .map(
             (uiExtra) => Material(
-              borderRadius: BorderRadius.circular(21.r),
+              borderRadius: BorderRadius.circular(30.r),
               child: InkWell(
-                borderRadius: BorderRadius.circular(21.r),
+                borderRadius: BorderRadius.circular(30.r),
                 onTap: () {
                   updateImage(uiExtra.value);
                   if (uiExtra.isSelected) {
@@ -40,8 +40,8 @@ class ImageExtras extends StatelessWidget {
                   onUpdate(uiExtra);
                 },
                 child: Container(
-                  width: 42.r,
-                  height: 42.r,
+                  width: 120.r,
+                  height: 120.r,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(21.r),
                   ),
@@ -51,8 +51,8 @@ class ImageExtras extends StatelessWidget {
                         borderRadius: BorderRadius.circular(21.r),
                         child: CachedNetworkImage(
                           imageUrl: uiExtra.value,
-                          width: 42.r,
-                          height: 42.r,
+                          width: 120.r,
+                          height: 120.r,
                           fit: BoxFit.cover,
                           progressIndicatorBuilder: (context, url, progress) {
                             return MakeShimmer(
@@ -79,22 +79,22 @@ class ImageExtras extends StatelessWidget {
                           },
                         ),
                       ),
-                      if (uiExtra.isSelected)
-                        Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            width: 22.r,
-                            height: 22.r,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(11.r),
-                              color: AppColors.accentGreen,
-                              border: Border.all(
-                                color: AppColors.white,
-                                width: 8.r,
-                              ),
-                            ),
-                          ),
-                        ),
+                      // if (uiExtra.isSelected)
+                      //   Align(
+                      //     alignment: Alignment.center,
+                      //     child: Container(
+                      //       width: 22.r,
+                      //       height: 22.r,
+                      //       decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(11.r),
+                      //         color: AppColors.accentGreen,
+                      //         border: Border.all(
+                      //           color: AppColors.white,
+                      //           width: 8.r,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
                     ],
                   ),
                 ),
