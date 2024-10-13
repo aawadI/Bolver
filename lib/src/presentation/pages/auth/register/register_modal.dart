@@ -78,7 +78,7 @@ class RegisterModal extends ConsumerWidget {
                     ),
                     14.verticalSpace,
                     PopupMenuButton<String>(
-                      initialValue: state.male,
+                      initialValue: 'female',
                       elevation: 0,
                       itemBuilder: (context) {
                         return [
@@ -149,8 +149,8 @@ class RegisterModal extends ConsumerWidget {
                                   state.male == 'male'
                                       ? AppHelpers.getTranslation(TrKeys.male)
                                       : AppHelpers.getTranslation(
-                                          TrKeys.female,
-                                        ),
+                                    TrKeys.female,
+                                  ),
                                   style: GoogleFonts.cairo(
                                     fontSize: 15.sp,
                                     fontWeight: FontWeight.w500,
@@ -204,7 +204,7 @@ class RegisterModal extends ConsumerWidget {
                       isError: state.isPasswordInvalid,
                       descriptionText: state.isPasswordInvalid
                           ? AppHelpers.getTranslation(
-                              TrKeys.passwordShouldContainMinimum8Characters)
+                          TrKeys.passwordShouldContainMinimum8Characters)
                           : null,
                       suffixIcon: IconButton(
                         splashRadius: 25,
@@ -227,7 +227,7 @@ class RegisterModal extends ConsumerWidget {
                       isError: state.isConfirmPasswordInvalid,
                       descriptionText: state.isConfirmPasswordInvalid
                           ? AppHelpers.getTranslation(
-                              TrKeys.confirmPasswordIsNotTheSame)
+                          TrKeys.confirmPasswordIsNotTheSame)
                           : null,
                       suffixIcon: IconButton(
                         splashRadius: 25,
@@ -245,7 +245,7 @@ class RegisterModal extends ConsumerWidget {
                     AccentLoginButton(
                       isLoading: state.isLoading,
                       background:
-                          isDarkMode ? AppColors.white : AppColors.black,
+                      isDarkMode ? AppColors.white : AppColors.black,
                       title: AppHelpers.getTranslation(TrKeys.save),
                       textColor: isDarkMode ? AppColors.black : AppColors.white,
                       onPressed: () =>

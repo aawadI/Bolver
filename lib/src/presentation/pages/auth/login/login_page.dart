@@ -85,35 +85,39 @@ class LoginPage extends ConsumerWidget {
                           ),
                         ),
                         26.verticalSpace,
-                        IntlPhoneField(
-                          countries: countries
-                              .where((country) => country.code != "AM")
-                              .toList(),
-                          decoration: InputDecoration(
-                            labelText: '',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: isDarkMode
-                                      ? AppColors.borderDark
-                                      : AppColors.borderColor),
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: IntlPhoneField(
+                            showDropdownIcon: false,
+                            textAlign: TextAlign.left,
+                            countries: countries
+                                .where((country) {
+                              return country.code == "SA";
+                            })
+                                .toList(),
+                            decoration: InputDecoration(
+                              labelText: '',
+                              hintText: 'رقم الهاتف',
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: isDarkMode ? AppColors.borderDark : AppColors.borderColor),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: isDarkMode ? AppColors.borderDark : AppColors.borderColor),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: isDarkMode ? AppColors.borderDark : AppColors.borderColor),
+                              ),
                             ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: isDarkMode
-                                      ? AppColors.borderDark
-                                      : AppColors.borderColor),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: isDarkMode
-                                      ? AppColors.borderDark
-                                      : AppColors.borderColor),
-                            ),
+                            dropdownIconPosition: IconPosition.trailing,
+                            initialCountryCode: 'SA',
+                            onChanged: (phone) {
+                              notifier.setEmail(phone.number);
+                              print(state.email);
+                            },
                           ),
-                          initialCountryCode: 'UZ',
-                          onChanged: (phone) {
-                            notifier.setEmail(phone.completeNumber);
-                          },
                         ),
                         16.verticalSpace,
                         OutlinedBorderTextField(
@@ -163,6 +167,8 @@ class LoginPage extends ConsumerWidget {
                           isLoading: state.isLoading,
                           onPressed: () {
                             if (state.email.trim().isNotEmpty) {
+                              print(state.email);
+                              print(state.password);
                               return notifier.login(
                                 checkYourNetwork: () {
                                   AppHelpers.showCheckFlash(

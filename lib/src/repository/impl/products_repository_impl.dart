@@ -14,7 +14,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
   }) async {
     final data = {
       if (query != null) 'search': query,
-      'perPage': 5,
+      'perPage': 10, //5
       'currency_id': LocalStorage.instance.getSelectedCurrency()?.id,
       'lang': LocalStorage.instance.getLanguage()?.locale,
     };
@@ -42,7 +42,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
   }) async {
     final data = {
       'search': query,
-      'perPage': 5,
+      'perPage': 10, //5
       if (categoryId != null) 'category_id': categoryId,
       if (brandId != null) 'brand_id': brandId,
       if (shopId != null) 'shop_id': shopId,
@@ -106,9 +106,75 @@ class ProductsRepositoryImpl extends ProductsRepository {
     final data = {
       if (brandId != null) 'brand_id': brandId,
       if (parentID != null) 'parent_category_id': parentID,
-      // if (categoryId != null) 'categoryIds[]': categoryId,
+      //if (categoryId != null) 'categoryIds[]': categoryId,
+      //if (categoryId != null) 'categoryIds': ['$categoryId'],
       if (parentCategoryId != null) 'parent_category_id': parentCategoryId,
-      'perPage': 10,
+      'perPage': 50, //10
+      //'page': page,
+      //'currency_id': LocalStorage.instance.getSelectedCurrency()?.id,
+      'lang': LocalStorage.instance.getLanguage()?.locale,
+      if (sortPrice ?? false) 'sortByAsc': true,
+      if (!(sortPrice ?? false)) 'sortByDesc': true,
+      //'column': 'created_at',
+      if (minPrice != null) 'range[0]': minPrice,
+      if (maxPrice != null) 'range[1]': maxPrice,
+    };
+    if (shopIds != null && shopIds.isNotEmpty) {
+      for (int i = 0; i < shopIds.length; i++) {
+        data['shopIds[$i]'] = shopIds[i];
+      }
+    }
+    // if (childCategory != null) {
+    //   data['categoryIds[0]'] = childCategory.id ?? 0;
+    // }
+    if (brandIds != null && brandIds.isNotEmpty) {
+      for (int i = 0; i < brandIds.length; i++) {
+        data['brandIds[$i]'] = brandIds[i];
+      }
+    }
+    if (extrasIds != null && extrasIds.isNotEmpty) {
+      for (int i = 0; i < extrasIds.length; i++) {
+        data['extrasIds[$i]'] = extrasIds[i];
+      }
+    }
+
+    try {
+      final client = inject<HttpService>().client(requireAuth: false);
+      final response = await client.get(
+        '/api/v1/rest/products/paginate',
+        queryParameters: data,
+      );
+      return ApiResult.success(
+        data: ProductsPaginateResponse.fromJson(response.data),
+      );
+    } catch (e) {
+      debugPrint('==> get products by brand id failure: $e');
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+
+  @override
+  Future<ApiResult<ProductsPaginateResponse>> getProductsPaginateE({
+    required int page,
+    int? categoryId,
+    int? brandId,
+    int? parentID,
+    int? parentCategoryId,
+    CategoryData? childCategory,
+    List<int>? shopIds,
+    List<int>? brandIds,
+    List<int>? extrasIds,
+    double? minPrice,
+    double? maxPrice,
+    bool? sortPrice,
+  }) async {
+    final data = {
+      if (brandId != null) 'brand_id': brandId,
+      if (parentID != null) 'parent_category_id': parentID,
+      if (categoryId != null) 'categoryIds[]': categoryId,
+      if (parentCategoryId != null) 'parent_category_id': parentCategoryId,
+      'perPage': 20, //10
       'page': page,
       'currency_id': LocalStorage.instance.getSelectedCurrency()?.id,
       'lang': LocalStorage.instance.getLanguage()?.locale,
@@ -152,6 +218,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
     }
   }
 
+
   @override
   Future<ApiResult<ProductsPaginateResponse>> getMostSoldProducts({
     required int page,
@@ -163,7 +230,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
       if (shopId != null) 'shop_id': shopId,
       if (categoryId != null) 'category_id': categoryId,
       if (brandId != null) 'brand_id': brandId,
-      'perPage': 12,
+      'perPage': 20, //12
       'page': page,
       'currency_id': LocalStorage.instance.getSelectedCurrency()?.id,
       'lang': LocalStorage.instance.getLanguage()?.locale,
@@ -328,7 +395,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
       'sort': 'desc',
       'column': 'created_at',
       'currency_id': LocalStorage.instance.getSelectedCurrency()?.id,
-      'perPage': 14,
+      'perPage': 20, //14
       'lang': LocalStorage.instance.getLanguage()?.locale,
     };
     try {
@@ -359,7 +426,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
       if (categoryId != null) 'category_id': categoryId,
       if (page != null) 'page': page,
       'currency_id': LocalStorage.instance.getSelectedCurrency()?.id,
-      'perPage': 14,
+      'perPage': 20, //14
       'lang': LocalStorage.instance.getLanguage()?.locale,
     };
     try {
@@ -389,7 +456,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
       if (page != null) 'page': page,
       //'profitable': true,
       'currency_id': LocalStorage.instance.getSelectedCurrency()?.id,
-      'perPage': 14,
+      'perPage': 20, //14
       'lang': LocalStorage.instance.getLanguage()?.locale,
     };
     try {
@@ -413,7 +480,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
   }) async {
     final data = {
       'page': page,
-      'perPage': 3,
+      'perPage': 5, //3
       'currency_id': LocalStorage.instance.getSelectedCurrency()?.id,
       'lang': LocalStorage.instance.getLanguage()?.locale,
     };

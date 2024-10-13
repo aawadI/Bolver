@@ -126,6 +126,8 @@ class CartShopItemWidget extends StatelessWidget {
               ],
             ),
           ),
+          // 15.verticalSpace,
+          // const DottedLine(),
           15.verticalSpace,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

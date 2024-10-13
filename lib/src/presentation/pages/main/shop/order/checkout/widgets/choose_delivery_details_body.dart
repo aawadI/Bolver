@@ -8,6 +8,7 @@ import '../../../../../../../core/utils/utils.dart';
 import '../../../../../../components/components.dart';
 import '../riverpod/provider/checkout_provider.dart';
 import 'addresses_modal_in_order_shipping.dart';
+import 'gift_model.dart';
 
 class ChooseDeliveryDetailsBody extends ConsumerWidget {
   const ChooseDeliveryDetailsBody({Key? key}) : super(key: key);
@@ -188,6 +189,29 @@ class ChooseDeliveryDetailsBody extends ConsumerWidget {
                           ),
                           isDarkMode: isDarkMode);
                     },
+                  ),
+                  20.verticalSpace,
+                  Row(
+                    children: [
+                      RadioButton(
+                        text: "هذا الطلب هديه",
+                        isSelected: state.isGift,
+                        onTap: () {
+                          notifier.setIsGift(!state.isGift);
+                          if (!state.isGift) {
+                            AppHelpers.showCustomModalBottomSheet(
+                              context: context,
+                              modal: GiftModal(
+                                notifier: notifier,
+                              ),
+                              isDarkMode: isDarkMode,
+                            );
+                            print(
+                                'to: ${state.to}, from: ${state.from}, msg: ${state.msg}');
+                          }
+                        },
+                      ),
+                    ],
                   ),
                   20.verticalSpace,
                 ],

@@ -29,27 +29,43 @@ class OrdersRepositoryImpl extends OrdersRepository {
 
   @override
   Future<ApiResult<CreateOrderResponse>> createOrder(
-    OrderBodyData orderBody,
-  ) async {
-    Map<String, dynamic> orderBodyMap = {
-      "note" : orderBody.note,
+      OrderBodyData orderBody,
+      ) async {
+    Map<String, dynamic> orderBodyMap = (orderBody.isGift)
+        ? {
+      "note": orderBody.note,
       'user_id': orderBody.userId,
       'total': orderBody.total,
+      'is_gift': orderBody.isGift,
+      'to': orderBody.to,
+      'from': orderBody.from,
+      'message': orderBody.msg,
       'currency_id': orderBody.currencyId,
       'rate': orderBody.currencyRate,
       "delivery_id": orderBody.deliveryId,
-      if(orderBody.coupon?.isNotEmpty ?? false ) 'coupon': orderBody.coupon,
-
+      if (orderBody.coupon?.isNotEmpty ?? false)
+        'coupon': orderBody.coupon,
+    }
+        : {
+      "note": orderBody.note,
+      'user_id': orderBody.userId,
+      'total': orderBody.total,
+      'is_gift': orderBody.isGift,
+      'currency_id': orderBody.currencyId,
+      'rate': orderBody.currencyRate,
+      "delivery_id": orderBody.deliveryId,
+      if (orderBody.coupon?.isNotEmpty ?? false)
+        'coupon': orderBody.coupon,
     };
     List<Map<String, dynamic>> shops = [];
     List<Map<String, dynamic>> products = [];
     for (final shop in orderBody.shops) {
       for (final product in shop.products) {
-        if(shop.shopId == product.shopId) {
+        if (shop.shopId == product.shopId) {
           products.add(
             {
               // 'product_id': product.stockId,
-              'id' : product.stockId,
+              'id': product.stockId,
               'price': product.price,
               'qty': product.quantity,
               'tax': product.tax,
@@ -68,7 +84,7 @@ class OrdersRepositoryImpl extends OrdersRepository {
             'delivery_address_id': shop.deliveryAddressId,
           if (shop.deliveryDate != null) 'delivery_date': shop.deliveryDate,
           if (shop.deliveryTime != null) 'delivery_time': shop.deliveryTime,
-          'delivery_type':  orderBody.deliveryType,
+          'delivery_type': orderBody.deliveryType,
           'coupon': orderBody.coupon,
           'tax': shop.tax,
           'products': products,
@@ -80,8 +96,8 @@ class OrdersRepositoryImpl extends OrdersRepository {
     orderBodyMap.putIfAbsent('shops', () => shops);
     try {
       final client = inject<HttpService>().client(requireAuth: true);
-      final response =
-      await client.post('/api/v1/dashboard/user/orders', data: orderBodyMap);
+      final response = await client.post('/api/v1/dashboard/user/orders',
+          data: orderBodyMap);
       return ApiResult.success(
         data: CreateOrderResponse.fromJson(response.data),
       );
@@ -91,7 +107,6 @@ class OrdersRepositoryImpl extends OrdersRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
-
   @override
   Future<ApiResult<OrderPaginateResponse>> getCompletedOrders(int page) async {
     final data = {

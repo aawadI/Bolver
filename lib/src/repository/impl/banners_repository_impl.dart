@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import '../repository.dart';
@@ -26,8 +28,21 @@ class BannersRepositoryImpl extends BannersRepository {
         '/api/v1/rest/banners/paginate',
         queryParameters: data,
       );
+      Map dataR = response.data;
+      List dataList = dataR['data'];
+
+      dataList.removeWhere(
+            (element) {
+          if (element['position'] == 5) {
+            return true;
+          }
+          return false;
+        },
+       );
+
+      dataR['data'] = dataList;
       return ApiResult.success(
-        data: BannersPaginateResponse.fromJson(response.data),
+        data: BannersPaginateResponse.fromJson(dataR),
       );
     } catch (e) {
       debugPrint('==> get banners paginate failure: $e');

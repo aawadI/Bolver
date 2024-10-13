@@ -80,8 +80,7 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
         });
       } else {
         AppHelpers.showCheckTopSnackBarInfo(context,
-            "${AppHelpers.getTranslation(TrKeys.id)} #${message.notification
-                ?.title} ${message.notification?.body}",
+            "${AppHelpers.getTranslation(TrKeys.id)} #${message.notification?.title} ${message.notification?.body}",
             onTap: () async {
               context.router.popUntilRoot();
               context.pushRoute(
@@ -97,12 +96,8 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isDarkMode = ref
-        .watch(appProvider)
-        .isDarkMode;
-    final bool isLtr = ref
-        .watch(appProvider)
-        .isLtr;
+    final bool isDarkMode = ref.watch(appProvider).isDarkMode;
+    final bool isLtr = ref.watch(appProvider).isLtr;
     return Directionality(
       textDirection: isLtr ? TextDirection.ltr : TextDirection.rtl,
       child: KeyboardDismisser(
@@ -129,7 +124,11 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
               //     letterSpacing: -0.7,
               //   ),
               // ),
-              title: Image.network("https://api.bolversa.com/storage/images/languages/101-1713042860.webp",scale: 5,color: isDarkMode ? AppColors.white : AppColors.black,),
+              title: Image.network(
+                "https://api.bolversa.com/storage/images/languages/101-1713042860.webp",
+                scale: 5,
+                color: isDarkMode ? AppColors.white : AppColors.black,
+              ),
               actions: [
                 IconButton(
                   splashRadius: 18.r,
@@ -200,9 +199,7 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
                   ),
                   7.horizontalSpace,
                   Text(
-                    '${LocalStorage.instance
-                        .getLikedProductsList()
-                        .length} ${AppHelpers.getTranslation(TrKeys.products)}',
+                    '${LocalStorage.instance.getLikedProductsList().length} ${AppHelpers.getTranslation(TrKeys.products)}',
                     style: GoogleFonts.cairo(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w500,
@@ -245,6 +242,12 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
                     child: BottomNavigationBar(
                       selectedItemColor:
                       isDarkMode ? AppColors.white : AppColors.black,
+                      selectedLabelStyle: GoogleFonts.cairo(
+                        color: isDarkMode ? AppColors.white : AppColors.black,
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      currentIndex: tabRouter.activeIndex,
                       unselectedItemColor: AppColors.unselectedBottomItem,
                       backgroundColor: AppColors.bottomNavigationBack,
                       onTap: (index) {
@@ -267,12 +270,13 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
                       },
                       type: BottomNavigationBarType.fixed,
                       elevation: 0,
-                      showSelectedLabels: false,
-                      showUnselectedLabels: false,
+                      showSelectedLabels: true,
+                      showUnselectedLabels: true,
                       items: [
                         _barItem(
                           iconData: FlutterRemix.store_2_fill,
-                          label: '${AppHelpers.getAppName()}',
+                          // label: '${AppHelpers.getAppName()}',
+                          label: AppHelpers.getTranslation(TrKeys.HomeScreen),
                           isSelected: tabRouter.activeIndex == 0,
                         ),
                         _barItem(
@@ -287,7 +291,7 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
                         ),
                         _barItem(
                           iconData: FlutterRemix.shopping_bag_3_fill,
-                          label: AppHelpers.getTranslation(TrKeys.order),
+                          label: AppHelpers.getTranslation(TrKeys.cart),
                           isSelected: tabRouter.activeIndex == 3,
                         ),
                         BottomNavigationBarItem(
@@ -310,9 +314,10 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
     );
   }
 
-  BottomNavigationBarItem _barItem({required IconData iconData,
-    required String label,
-    required bool isSelected}) {
+  BottomNavigationBarItem _barItem(
+      {required IconData iconData,
+        required String label,
+        required bool isSelected}) {
     final bool isDarkMode = LocalStorage.instance.getAppThemeMode();
     return BottomNavigationBarItem(
       icon: Badge(
@@ -320,13 +325,10 @@ class _ShopMainPageState extends ConsumerState<ShopMainPage> {
         label: Consumer(
           builder: (context, ref, child) {
             return Text(
-              LocalStorage.instance
-                  .getCartProducts()
-                  .length
-                  .toString(),
+              LocalStorage.instance.getCartProducts().length.toString(),
               style: GoogleFonts.cairo(
-                color: AppColors.white,
-                fontSize: 7.sp,
+                color: isDarkMode ? AppColors.white : AppColors.black,
+                fontSize: 11.sp,
                 fontWeight: FontWeight.w600,
               ),
             );

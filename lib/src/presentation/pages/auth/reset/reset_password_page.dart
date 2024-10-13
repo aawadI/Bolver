@@ -22,6 +22,7 @@ class ResetPasswordPage extends ConsumerStatefulWidget {
 
 class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
   final GlobalKey<FormState> from = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     final notifier = ref.read(resetPasswordProvider.notifier);
@@ -86,35 +87,41 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
                       26.verticalSpace,
                       Form(
                         key: from,
-                        child: IntlPhoneField(
-                          countries: countries
-                              .where((country) => country.code != "AM")
-                              .toList(),
-                          decoration: InputDecoration(
-                            labelText: '',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: isDarkMode
-                                      ? AppColors.borderDark
-                                      : AppColors.borderColor),
+                        child: Directionality(
+                          textDirection: TextDirection.ltr,
+
+                          child: IntlPhoneField(
+                            showDropdownIcon: false,
+                            countries: countries
+                                .where((country) => country.code == "SA")
+                                .toList(),
+                            decoration: InputDecoration(
+                              labelText: '',
+                              hintText: 'رقم الهاتف',
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: isDarkMode
+                                        ? AppColors.borderDark
+                                        : AppColors.borderColor),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: isDarkMode
+                                        ? AppColors.borderDark
+                                        : AppColors.borderColor),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: isDarkMode
+                                        ? AppColors.borderDark
+                                        : AppColors.borderColor),
+                              ),
                             ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: isDarkMode
-                                      ? AppColors.borderDark
-                                      : AppColors.borderColor),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: isDarkMode
-                                      ? AppColors.borderDark
-                                      : AppColors.borderColor),
-                            ),
+                            initialCountryCode: 'SA',
+                            onChanged: (phone) {
+                              notifier.setPhone(phone.completeNumber);
+                            },
                           ),
-                          initialCountryCode: 'UZ',
-                          onChanged: (phone) {
-                            notifier.setPhone(phone.completeNumber);
-                          },
                         ),
                       ),
                       50.verticalSpace,

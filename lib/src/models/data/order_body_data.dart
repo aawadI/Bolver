@@ -5,6 +5,10 @@ class OrderBodyData {
   final int deliveryId;
   final num currencyRate;
   final String? note;
+  final bool isGift = false;
+  final String? to = '';
+  final String? from = '';
+  final String? msg = '';
   final String? coupon;
   final String? deliveryType;
   final List<ShopOrder> shops;
@@ -19,11 +23,15 @@ class OrderBodyData {
     this.coupon,
     this.deliveryType,
     required this.shops,
+     bool? isGift,
+     String? to,
+     String? from,
+     String? msg,
   });
 
   @override
   String toString() {
-    return "{\"user_id\":$userId, \"total\":$total, \"currency_id\":$currencyId, \"delivery_id\":$deliveryId, \"rate\":$currencyRate, \"note\":\"$note\", \"coupon\":\"$coupon\", \"shops\":$shops, \"delivery_type\": $deliveryType}";
+    return "{\"user_id\":$userId, \"total\":$total, \"currency_id\":$currencyId, \"delivery_id\":$deliveryId, \"rate\":$currencyRate, \"note\":\"$note\", \"coupon\":\"$coupon\", \"shops\":$shops, \"delivery_type\": $deliveryType,\"is_gift\": $isGift, \"to\": $to,\"from\": $from,\"msg\": $msg}";
   }
 }
 

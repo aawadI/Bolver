@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
@@ -44,6 +45,18 @@ class LoginNotifier extends StateNotifier<LoginState> {
     );
   }
 
+  String formatPhoneNumber(String phoneNumber) {
+    // Remove all non-digit characters
+    String cleanedPhoneNumber = phoneNumber.replaceAll(RegExp(r'\D'), '');
+
+    // Add the country code and format the phone number
+    String formattedPhoneNumber = '+${cleanedPhoneNumber.substring(0, 3)} ${cleanedPhoneNumber.substring(3, 6)} ${cleanedPhoneNumber.substring(6, 9)} ${cleanedPhoneNumber.substring(9)}';
+
+    return formattedPhoneNumber;
+  }
+
+
+
   void setShowPassword(bool show) {
     state = state.copyWith(showPassword: show);
   }
@@ -59,7 +72,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
       }
       state = state.copyWith(isLoading: true);
       final response = await _authRepository.login(
-        email: state.email.replaceAll("+", ""),
+        email:state.email,
         password: state.password,
       );
       response.when(

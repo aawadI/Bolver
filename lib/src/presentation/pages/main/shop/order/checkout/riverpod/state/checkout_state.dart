@@ -16,6 +16,7 @@ class CheckoutState with _$CheckoutState {
     @Default(false) bool isPaymentsLoading,
     @Default(false) bool isShopDeliveriesLoading,
     @Default(false) bool isCreatingOrder,
+    @Default(false) bool isGift,
     @Default(false) bool isContinueEnabled,
     @Default(false) bool isCalculationsLoading,
     @Default(false) bool isCheckingCoupon,

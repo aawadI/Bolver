@@ -100,7 +100,7 @@ class SelectLangNotifier extends StateNotifier<SelectLangState> {
               if (storage.getIsGuest()) {
                 context.replaceRoute(const ShopMainRoute());
               } else {
-                context.replaceRoute(const LoginRoute());
+                context.replaceRoute(const ShopMainRoute());
               }
             } else {
               if (!mounted) return;

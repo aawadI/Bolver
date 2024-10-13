@@ -58,7 +58,7 @@ class _RegisterConfirmationPageState
               elevation: 0,
               centerTitle: true,
               title: Text(
-                AppHelpers.getAppName() ?? 'Go shops',
+                AppHelpers.getAppName() ?? 'Bolver',
                 style: GoogleFonts.cairo(
                   fontWeight: FontWeight.w700,
                   fontSize: 14.sp,

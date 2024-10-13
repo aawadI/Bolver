@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../repository.dart';
@@ -126,7 +127,7 @@ class UserRepositoryImpl extends UserRepository {
       final client = inject<HttpService>().client(requireAuth: true);
       final response = await client.post(
         '/api/v1/dashboard/user/profile/password/update',
-        data: data,
+        data: FormData.fromMap(data),
       );
       return ApiResult.success(
         data: ProfileResponse.fromJson(response.data),

@@ -237,6 +237,7 @@ class ProfileSettingsNotifier extends StateNotifier<ProfileSettingsState> {
         success: (data) {
           state = state.copyWith(isSaving: false);
           context.popRoute();
+          AppHelpers.showCheckFlash(context, 'Password Reset Successfully');
         },
         failure: (failure) {
           state = state.copyWith(isSaving: false);

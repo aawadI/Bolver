@@ -262,6 +262,23 @@ class CheckoutNotifier extends StateNotifier<CheckoutState> {
     checkContinueEnabled();
   }
 
+  void setIsGift(bool isGift) {
+    state = state.copyWith(isGift: isGift);
+  }
+
+  void setTo(String to) {
+    state = state.copyWith(to: to);
+  }
+
+  void setFrom(String from) {
+    state = state.copyWith(from: from);
+  }
+
+  void setMessage(String msg) {
+    state = state.copyWith(msg: msg);
+  }
+
+
   void setDeliveryTime(DateTime date) {
     final String formattedTime = DateFormat.Hm().format(date);
     state = state.copyWith(deliveryTime: formattedTime);
@@ -480,17 +497,37 @@ class CheckoutNotifier extends StateNotifier<CheckoutState> {
         );
         shopID = 0;
       }
-      final orderBody = OrderBodyData(
+      final orderBody = (state.isGift)
+          ? OrderBodyData(
         deliveryId: state.deliveryTypeId,
         coupon: state.coupon,
         deliveryType: deliveryType,
         userId: LocalStorage.instance.getUser()?.id ?? 0,
         total: orderState.totalAmount,
         currencyId: LocalStorage.instance.getSelectedCurrency()?.id ?? 0,
-        currencyRate: LocalStorage.instance.getSelectedCurrency()?.rate ?? 0,
+        currencyRate:
+        LocalStorage.instance.getSelectedCurrency()?.rate ?? 0,
         note: state.comment,
         shops: shopsOrder,
+        isGift: state.isGift,
+        to: state.to,
+        from: state.from,
+        msg: state.msg,
+      )
+          : OrderBodyData(
+        deliveryId: state.deliveryTypeId,
+        coupon: state.coupon,
+        deliveryType: deliveryType,
+        userId: LocalStorage.instance.getUser()?.id ?? 0,
+        total: orderState.totalAmount,
+        currencyId: LocalStorage.instance.getSelectedCurrency()?.id ?? 0,
+        currencyRate:
+        LocalStorage.instance.getSelectedCurrency()?.rate ?? 0,
+        note: state.comment,
+        shops: shopsOrder,
+        isGift: state.isGift,
       );
+
       checkData(orderBody);
       // return;
       final response = await _ordersRepository.createOrder(orderBody);
@@ -515,14 +552,14 @@ class CheckoutNotifier extends StateNotifier<CheckoutState> {
             case 'credit':
               {
                 try {
-                  var total = orderState.calculateResponse!.data!.orderTotal!;
-                  var grandTotal = total + 1.0 + state.deliveryFee;
+                  var total = orderState.calculateResponse!.data!.orderTotal!+orderState.totalShopsTax;
+                  var grandTotal = total + state.deliveryFee;
                   print("total : $grandTotal");
                   final paymentConfig = PaymentConfig(
                     publishableApiKey:
                         'pk_live_AcKnHdHtuRNUEB4Wv6vftyzdxhp1YBBaXaYx2Pks',
                     //'pk_test_Pn71T2T1L17Q17goFziUR9pdj5hRSUSGJeeSwdLT',
-                    amount: grandTotal.toInt() * 100,
+                    amount: (grandTotal * 100).toInt(),
                     // SAR 257.58
                     description: 'order #${data.data?.id}',
                     applePay: ApplePayConfig(

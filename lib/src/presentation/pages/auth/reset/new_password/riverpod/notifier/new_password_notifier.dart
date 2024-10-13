@@ -51,7 +51,8 @@ class NewPasswordNotifier extends StateNotifier<NewPasswordState> {
       response.when(
         success: (data) {
           state = state.copyWith(isLoading: false);
-          context.router.popUntilRoot();
+          // context.router.popUntilRoot();
+          AppHelpers.showCheckFlash(context, 'Password Reset Successfully');
           context.replaceRoute(const ShopMainRoute());
         },
         failure: (failure) {

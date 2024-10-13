@@ -37,6 +37,7 @@ class AppConstants {
 
   /// api urls
   static const String baseUrl = 'https://api.bolversa.com';
+  //static const String baseUrl = 'http://192.168.110.195:8080';
   static const String imageBaseUrl =
       'https://mupza-space.ams3.digitaloceanspaces.com/public/images';
   static const String googleApiKey = 'AIzaSyAIKCNOpmrXNNC21Y_oi9BGeo70z2pld3U';
@@ -47,7 +48,6 @@ class AppConstants {
   static const String localeCodeEn = 'en';
 
   /// location
-
   static const double demoLatitude = 30.045768708229197;
   static const double demoLongitude = 31.34716985879954;
   static const double pinLoadingMin = 30.29966854394081;

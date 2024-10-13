@@ -318,7 +318,10 @@ class TrKeys {
   static const String title = 'العنوان الرئيسي';
   static const String apply = 'تطبيق';
   static const String order = 'طلب';
-  static const String liked = 'تم الاعجاب به';
+  static const String cart = 'سله';
+
+  // static const String liked = 'تم الاعجاب به';
+  static const String liked = 'المفضله';
   static const String saved = 'تم الحفظ';
   static const String ready = 'جاهز';
   static const String looks = 'نظرة عامة';
@@ -344,7 +347,9 @@ class TrKeys {
   static const String stores = 'متاجر';
   static const String banner = 'منشورات';
   static const String seeAll = 'رؤيه الكل';
-  static const String profile = 'الملف الشخصي';
+
+  // static const String profile = 'الملف الشخصي';
+  static const String profile = 'الحساب';
   static const String address = 'العنوان';
   static const String addressError = 'خطأ في العنوان';
   static const String onAWay = 'في الطريق';
@@ -391,6 +396,8 @@ class TrKeys {
   static const String byHighPrice = 'حسب أعلي سعر';
   static const String goToSale = 'الذهاب للعروض';
   static const String firstname = 'الاسم';
+  static const String isGift = 'هذا الطلب  هديه';
+
   static const String allStores = 'كل المتاجر';
   static const String storeInfo = 'معلومات المتجر';
   static const String deleteAll = 'حذف الكل';
@@ -400,7 +407,10 @@ class TrKeys {
   static const String dicountCopoun = 'كود خصم';
   static const String currencies = 'العملات';
   static const String addToCart = 'اضافة للسلة';
-  static const String categories = 'التصنيفات';
+
+  // static const String categories = 'التصنيفات';
+  static const String categories = 'الفئات';
+  static const String HomeScreen = 'الرئيسيه';
   static const String profitable = 'مكثف';
   static const String goToAdmin = 'الذهاب للمشرف';
   static const String continueText = 'اكمل';
@@ -495,7 +505,7 @@ class TrKeys {
   static const String showWorkingHours = 'عرض ساعات العمل';
   static const String selectPickupDate = 'اختار معاد الاستلام';
   static const String mostSoldProducts = 'المنتجات الاكثر مبيعا';
-  static const String totalProductPrice = 'اجمالي سعر المنتج';
+  static const String totalProductPrice = 'اجمالي سعر السله';
   static const String createNewPassword = 'انشاء كلمه مرور جديده';
   static const String useDifferentEmail = 'استخدام بريد الكتروني اخر';
   static const String iAgreeToSendASms = 'انا موافق علي ارسال رساله نصيه';

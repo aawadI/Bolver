@@ -95,42 +95,47 @@ class _EnterPhonePageState extends ConsumerState<EnterPhonePage> {
                           26.verticalSpace,
                           Form(
                             key: from,
-                            child: IntlPhoneField(
-                              countries: countries
-                                  .where((country) => country.code != "AM")
-                                  .toList(),
-                              validator: (s) {
-                                if (s?.number.isEmpty ?? true) {
-                                  return TrKeys.empty;
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                labelText: '',
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: isDarkMode
-                                          ? AppColors.borderDark
-                                          : AppColors.borderColor),
+                            child: Directionality(
+                              textDirection: TextDirection.ltr,
+                              child: IntlPhoneField(
+                                showDropdownIcon: false,
+                                countries: countries
+                                    .where((country) => country.code == "SA")
+                                    .toList(),
+                                validator: (s) {
+                                  if (s?.number.isEmpty ?? true) {
+                                    return TrKeys.empty;
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  labelText: '',
+                                  hintText: 'رقم الهاتف',
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: isDarkMode
+                                            ? AppColors.borderDark
+                                            : AppColors.borderColor),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: isDarkMode
+                                            ? AppColors.borderDark
+                                            : AppColors.borderColor),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: isDarkMode
+                                            ? AppColors.borderDark
+                                            : AppColors.borderColor),
+                                  ),
                                 ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: isDarkMode
-                                          ? AppColors.borderDark
-                                          : AppColors.borderColor),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: isDarkMode
-                                          ? AppColors.borderDark
-                                          : AppColors.borderColor),
-                                ),
+                                initialCountryCode: 'SA',
+                                keyboardType: TextInputType.phone,
+                                onChanged: (phone) {
+                                  notifier.setPhone(phone.completeNumber);
+                                },
                               ),
-                              initialCountryCode: 'UZ',
-                              keyboardType: TextInputType.phone,
-                              onChanged: (phone) {
-                                notifier.setPhone(phone.completeNumber);
-                              },
                             ),
                           ),
                           16.verticalSpace,

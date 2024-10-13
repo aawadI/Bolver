@@ -31,7 +31,7 @@ class NewPasswordPage extends ConsumerWidget {
             elevation: 0,
             centerTitle: true,
             title: Text(
-              AppHelpers.getAppName() ?? 'Go shops',
+              AppHelpers.getAppName() ?? 'Bolver',
               style: GoogleFonts.cairo(
                 fontWeight: FontWeight.w700,
                 fontSize: 14.sp,
@@ -113,8 +113,11 @@ class NewPasswordPage extends ConsumerWidget {
                     AccentLoginButton(
                       title: AppHelpers.getTranslation(TrKeys.save),
                       isLoading: state.isLoading,
-                      onPressed: state.newPassword.length > 7 &&
-                              state.confirmNewPassword.length > 7
+                      // onPressed: (state.newPassword.length > 7 &&
+                      //         state.confirmNewPassword.length > 7)
+                      //     ? () => notifier.updatePassword(context)
+                      //     : null,
+                      onPressed: (state.newPassword.length > 7)
                           ? () => notifier.updatePassword(context)
                           : null,
                     ),

@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:g_customer/src/core/utils/app_helpers.dart';
-
 import '../../core/di/injection.dart';
 import '../../core/handlers/handlers.dart';
 import '../../core/utils/local_storage.dart';
@@ -40,7 +39,7 @@ class AuthRepositoryImpl extends AuthRepository {
     required String email,
     required String password,
   }) async {
-    final data = {'phone': "+$email", 'password': password};
+    final data = {'phone': "+966$email", 'password': password};
     try {
       final client = inject<HttpService>().client(requireAuth: false);
       Response response = await _loginRequest(client, data);
@@ -64,11 +63,53 @@ class AuthRepositoryImpl extends AuthRepository {
     }
   }
 
-  Future<Response> _loginRequest(Dio client, Map<String, dynamic> data,
-      {String? url}) async {
+  // Future<Response> _loginRequest(Dio client, Map<String, dynamic> data,
+  //     {String? url}) async {
+  //   try {
+  //     final response =
+  //         await client.post(url ?? '/api/v1/auth/login', queryParameters: data);
+  //     return response;
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+  // Future<Response> _loginRequest(Dio client, Map<String, dynamic> data, {String? url}) async {
+  //   try {
+  //     final formData = FormData.fromMap(data);
+  //     final response = await client.post(
+  //       url ?? '/api/v1/auth/login',
+  //       data: formData,
+  //     );
+  //     return response;
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+
+  String formatPhoneNumber(String phoneNumber) {
+    // Remove all non-digit characters
+    String cleanedPhoneNumber = phoneNumber.replaceAll(RegExp(r'\D'), '');
+
+    // Add the country code and format the phone number
+    String formattedPhoneNumber = '+${cleanedPhoneNumber.substring(0, 3)} ${cleanedPhoneNumber.substring(3, 6)} ${cleanedPhoneNumber.substring(6, 9)} ${cleanedPhoneNumber.substring(9)}';
+
+    return formattedPhoneNumber;
+  }
+
+  Future<Response> _loginRequest(Dio client, Map<String, dynamic> data, {String? url}) async {
     try {
-      final response =
-          await client.post(url ?? '/api/v1/auth/login', queryParameters: data);
+      // Format the phone number
+      String phoneNumber = data['phone'];
+      String formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+      data['phone'] = formattedPhoneNumber;
+
+      final formData = FormData.fromMap(data);
+      final response = await client.post(
+        url ?? '/api/v1/auth/login',
+        data: formData,
+      );
       return response;
     } catch (e) {
       rethrow;
